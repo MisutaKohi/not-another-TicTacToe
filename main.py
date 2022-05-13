@@ -1,6 +1,14 @@
-def print_board(dict):
+def print_board(dictionary):
     '''This function will be used to print the game board. It takes a
-    dictionary that will represent the previous moves of the players.'''
+    dictionary that will represent the previous moves of the players
+    and format them to fit the game board.'''
+
+    print('      L  M  R ')
+    print('top  ' + dictionary['top-L'] + ' | ' + dictionary['top-M'] + ' | '+ dictionary['top-R'])
+    print('     --+---+--')
+    print('mid  ' + dictionary['mid-L'] + ' | ' + dictionary['mid-M'] + ' | '+ dictionary['mid-R'])
+    print('     --+---+--')
+    print('low  '+dictionary['low-L'] + ' | ' + dictionary['low-M'] + ' | ' + dictionary['low-R'])
 
 def X_to_play(dictionary):
     '''This will represent X's turn. It will prompt the user to enter their
@@ -44,7 +52,7 @@ def main():
             if winner != None:
                 break
 
-        print('{}\'s are the winner! Congrats!')
+        print('{}\'s are the winner! Congrats!'.format(winner))
 
         play_again = input('Would you like to play again? (y/n)' )
 
@@ -56,4 +64,9 @@ def main():
     print('Thanks for playing!')
 
 if __name__ == '__main__':
-    main()
+
+    dictionary = {'top-L': 'X', 'top-M': 'X', 'top-R': 'X',
+                  'mid-L': 'O', 'mid-M': 'O', 'mid-R': 'O',
+                  'low-L': 'X', 'low-M': 'O', 'low-R': 'O'}
+
+    print_board(dictionary)
