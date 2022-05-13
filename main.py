@@ -3,15 +3,22 @@ def print_board(dict):
     dictionary that will represent the previous moves of the players.'''
 
 def X_to_play(dictionary):
-    ''''''
+    '''This will represent X's turn. It will prompt the user to enter their
+    move, and follow-up with additional instructions for proper formatting
+    if needed.'''
 
 def O_to_play(dictionary):
-    ''''''
+    '''This will represent O's turn. It will prompt the user to enter their
+    move, and follow-up with additional instructions for proper formatting
+    if needed.'''
 
 def is_game_over(dictionary):
-    ''''''
+    '''This function will check to see if either team has achieved a 3 in a row.
+    If so, the game will end. This function returns the name of the winning team
+    or None if no winner has yet been determined.'''
 
 def main():
+    '''This is the main function and entry point to this program.'''
 
     game_board = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
                   'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
@@ -19,7 +26,7 @@ def main():
 
     winner = None
 
-    while play_again = True:
+    while play_again:
 
         while True:
 
@@ -27,9 +34,15 @@ def main():
 
             winner = is_game_over(game_board)
 
+            if winner != None:
+                break
+
             O_to_play(game_board)
 
             winner = is_game_over(game_board)
+
+            if winner != None:
+                break
 
         print('{}\'s are the winner! Congrats!')
 
@@ -41,3 +54,6 @@ def main():
             play_again = False
 
     print('Thanks for playing!')
+
+if __name__ == '__main__':
+    main()
