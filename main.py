@@ -88,18 +88,20 @@ def is_game_over(dictionary):
 
     return None
 
-
-
 def main():
     '''This is the main function and entry point to this program.'''
 
-    game_board = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
-                  'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
-                  'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
-
     winner = None
 
+    play_again = True
+
     while play_again:
+
+        game_board = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
+                      'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
+                      'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
+
+        print_board(game_board)
 
         while True:
 
@@ -110,6 +112,9 @@ def main():
             if winner != None:
                 break
 
+            print() #formatting
+            print_board(game_board)
+
             O_to_play(game_board)
 
             winner = is_game_over(game_board)
@@ -117,24 +122,25 @@ def main():
             if winner != None:
                 break
 
+            print() #formatting
+            print_board(game_board)
+
         if winner == 'Tie':
             print('Cat\'s game! Tie all.')
         else:
             print('{}\'s are the winner! Congrats!'.format(winner))
+            print() # for formatting
 
-        play_again = input('Would you like to play again? (y/n)' )
+        play_again = input('Would you like to play again? (y/n) ')
 
         if play_again[0].lower() == 'y':
             play_again = True
+            print() #formatting
         else:
             play_again = False
+            print() #formatting
 
     print('Thanks for playing!')
 
 if __name__ == '__main__':
-
-    dictionary = {'top-L': 'X', 'top-M': 'X', 'top-R': 'O',
-                  'mid-L': 'O', 'mid-M': 'O', 'mid-R': 'X',
-                  'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
-
-    print(is_game_over(dictionary))
+    main()
