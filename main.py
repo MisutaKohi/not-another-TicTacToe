@@ -18,7 +18,7 @@ def X_to_play(dictionary):
     proper_moves = dictionary.keys()
 
     while True:
-        player_move = input("Please enter your move: ")
+        player_move = input("Please enter your move (X): ")
 
         if player_move not in proper_moves:
             print('Please enter a row and column. For example, \'low-R\' or \'mid-M\' with this formatting.')
@@ -36,10 +36,59 @@ def O_to_play(dictionary):
     move, and follow-up with additional instructions for proper formatting
     if needed.'''
 
+    proper_moves = dictionary.keys()
+
+    while True:
+        player_move = input("Please enter your move (O): ")
+
+        if player_move not in proper_moves:
+            print('Please enter a row and column. For example, \'low-R\' or \'mid-M\' with this formatting.')
+            continue
+
+        if dictionary.get(player_move) != ' ':
+            print("That square is already taken. Please enter a different one.")
+        else:
+            dictionary[player_move] = 'O'
+            break
+
 def is_game_over(dictionary):
     '''This function will check to see if either team has achieved a 3 in a row.
     If so, the game will end. This function returns the name of the winning team
     or None if no winner has yet been determined.'''
+
+    squares = list(dictionary.values())
+
+    horizontal_wins = str(squares[0] + squares[1] + squares[2]) + ' ' + str(squares[3] + squares[4] + squares[5]) + \
+                      ' ' + str(squares[6] + squares[7] + squares[8])
+
+    vertical_wins = str(squares[0] + squares[3] + squares[6]) + ' ' + str(squares[1] + squares[4] + squares[7]) + \
+                    ' ' + str(squares[2] + squares[5] + squares[8])
+
+    diagonal_wins = str(squares[0] + squares[4] + squares[8]) + ' ' + str(squares[2] + squares[4] + squares[6])
+
+    if 'XXX' in horizontal_wins:
+        return 'X'
+    elif 'XXX' in vertical_wins:
+        return 'X'
+    elif 'XXX' in diagonal_wins:
+        return 'X'
+    elif 'OOO' in horizontal_wins:
+        return 'O'
+    elif 'OOO' in vertical_wins:
+        return 'O'
+    elif 'OOO' in diagonal_wins:
+        return 'O'
+
+    count = 0
+    for value in squares:
+        if value != ' ':
+            count += 1
+    if count == 9:
+        return 'Tie'
+
+    return None
+
+
 
 def main():
     '''This is the main function and entry point to this program.'''
@@ -68,7 +117,10 @@ def main():
             if winner != None:
                 break
 
-        print('{}\'s are the winner! Congrats!'.format(winner))
+        if winner == 'Tie':
+            print('Cat\'s game! Tie all.')
+        else:
+            print('{}\'s are the winner! Congrats!'.format(winner))
 
         play_again = input('Would you like to play again? (y/n)' )
 
@@ -81,8 +133,8 @@ def main():
 
 if __name__ == '__main__':
 
-    dictionary = {'top-L': 'X', 'top-M': 'X', 'top-R': 'X',
-                  'mid-L': 'O', 'mid-M': 'O', 'mid-R': 'O',
-                  'low-L': 'X', 'low-M': 'O', 'low-R': 'O'}
+    dictionary = {'top-L': 'X', 'top-M': 'X', 'top-R': 'O',
+                  'mid-L': 'O', 'mid-M': 'O', 'mid-R': 'X',
+                  'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
 
-    X_to_play(dictionary)
+    print(is_game_over(dictionary))
