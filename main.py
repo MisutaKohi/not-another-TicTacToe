@@ -15,6 +15,22 @@ def X_to_play(dictionary):
     move, and follow-up with additional instructions for proper formatting
     if needed.'''
 
+    proper_moves = dictionary.keys()
+
+    while True:
+        player_move = input("Please enter your move: ")
+
+        if player_move not in proper_moves:
+            print('Please enter a row and column. For example, \'low-R\' or \'mid-M\' with this formatting.')
+            continue
+
+        if dictionary.get(player_move) != ' ':
+            print("That square is already taken. Please enter a different one.")
+        else:
+            dictionary[player_move] = 'X'
+            break
+
+
 def O_to_play(dictionary):
     '''This will represent O's turn. It will prompt the user to enter their
     move, and follow-up with additional instructions for proper formatting
@@ -69,4 +85,4 @@ if __name__ == '__main__':
                   'mid-L': 'O', 'mid-M': 'O', 'mid-R': 'O',
                   'low-L': 'X', 'low-M': 'O', 'low-R': 'O'}
 
-    print_board(dictionary)
+    X_to_play(dictionary)
