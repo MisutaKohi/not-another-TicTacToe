@@ -66,17 +66,9 @@ def is_game_over(dictionary):
 
     diagonal_wins = str(squares[0] + squares[4] + squares[8]) + ' ' + str(squares[2] + squares[4] + squares[6])
 
-    if 'XXX' in horizontal_wins:
+    if 'XXX' in horizontal_wins or 'XXX' in vertical_wins or 'XXX' in diagonal_wins:
         return 'X'
-    elif 'XXX' in vertical_wins:
-        return 'X'
-    elif 'XXX' in diagonal_wins:
-        return 'X'
-    elif 'OOO' in horizontal_wins:
-        return 'O'
-    elif 'OOO' in vertical_wins:
-        return 'O'
-    elif 'OOO' in diagonal_wins:
+    elif 'OOO' in horizontal_wins or 'OOO' in vertical_wins or 'OOO' in diagonal_wins:
         return 'O'
 
     count = 0
